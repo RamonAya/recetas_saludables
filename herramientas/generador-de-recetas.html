@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de recetas | Recetas para cuidarte</title>
+  <style>
+    :root {
+      --fondo: #f6f4ee;
+      --panel: #ffffff;
+      --borde: #dfe7d7;
+      --verde: #49614d;
+      --verde-claro: #edf4e9;
+      --texto: #2f3a2f;
+      --texto-sec: #667066;
+      --sombra: 0 10px 28px rgba(0,0,0,0.06);
+      --radio: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+    }
+
+    .intro {
+      margin: 0 0 28px;
+      color: var(--texto-sec);
+      max-width: 70ch;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 520px) 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      padding: 22px;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+    }
+
+    .bloque-form {
+      margin-bottom: 24px;
+    }
+
+    .bloque-form:last-child {
+      margin-bottom: 0;
+    }
+
+    .bloque-form h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      color: var(--verde);
+    }
+
+    .campo {
+      margin-bottom: 14px;
+    }
+
+    .campo:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--verde);
+      font-size: 0.95rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--texto);
+      background: #fcfcfa;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #8fbf7f;
+      box-shadow: 0 0 0 4px rgba(143, 191, 127, 0.12);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn-principal {
+      background: var(--verde);
+      color: #fff;
+    }
+
+    .btn-secundario {
+      background: var(--verde-claro);
+      color: var(--verde);
+      border: 1px solid var(--borde);
+    }
+
+    .salida {
+      display: grid;
+      gap: 24px;
+    }
+
+    .salida-panel {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      padding: 22px;
+    }
+
+    .salida-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .salida-top h2 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .salida-acciones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .codigo {
+      width: 100%;
+      min-height: 340px;
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      background: #fbfbf8;
+      padding: 16px;
+      font-family: Consolas, monospace;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      white-space: pre;
+      overflow: auto;
+    }
+
+    .nota {
+      margin-top: 10px;
+      font-size: 0.92rem;
+      color: var(--texto-sec);
+    }
+
+    .mini-ayuda {
+      font-size: 0.88rem;
+      color: var(--texto-sec);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+
+    .mensaje {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    transition: opacity .3s ease;
+}
+
+.mensaje.ok {
+    background: #e8f7ec;
+    color: #1f6f3d;
+    border: 1px solid #8fd3a5;
+}
+
+.mensaje.warning {
+    background: #fff8e5;
+    color: #8a6d00;
+    border: 1px solid #f0d36d;
+}
+
+.mensaje.error {
+    background: #fdecec;
+    color: #9b1c1c;
+    border: 1px solid #ef9a9a;
+}
+
+.oculto {
+    display: none;
+}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Generador de recetas</h1>
+    <p class="intro">
+      Rellena los campos, pulsa <strong>Generar receta</strong> y obtendrás:
+      el HTML completo de la receta y el bloque listo para pegar en <code>data/recetas.js</code>.
+    </p>
+
+    <div id="mensaje" class="mensaje oculto"></div>
+
+    <div class="layout">
+      <!-- FORMULARIO -->
+      <section class="panel">
+        <h2>Datos de la receta</h2>
+
+        <div class="bloque-form">
+          <h3>1) Datos del index</h3>
+
+          <div class="campo">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" placeholder="Ej. Garbanzos con espinacas" />
+          </div>
+
+          <div class="campo">
+            <label for="slug">Slug</label>
+            <input type="text" id="slug" placeholder="Ej. garbanzos-con-espinacas" />
+            <p class="mini-ayuda">Se autogenera desde el título, pero puedes editarlo a mano.</p>
+          </div>
+
+          <div class="campo">
+            <label for="descripcion">Descripción corta (card del index)</label>
+            <textarea id="descripcion" placeholder="Texto breve que aparece en la tarjeta del index"></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="campo">
+              <label for="categoria">Categoría</label>
+              <input type="text" id="categoria" placeholder="Ej. Legumbres" />
+            </div>
+
+            <div class="campo">
+              <label for="tipo">Tipo</label>
+              <select id="tipo">
+                <option value="Desayuno">Desayuno</option>
+                <option value="Almuerzo">Almuerzo</option>
+                <option value="Cena">Cena</option>
+                <option value="Snack">Snack</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="imagen">Ruta de imagen</label>
+            <input type="text" id="imagen" placeholder="img/recetas/garbanzos-con-espinacas.png" />
+          </div>
+        </div>
+
+        <div class="bloque-form">
+          <h3>2) Datos de la ficha</h3>
+
+          <div class="campo">
+            <label for="subtitulo">Subtítulo / descripción larga</label>
+            <textarea id="subtitulo" placeholder="Texto que aparece debajo del título en la receta y en la tarjeta"></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="campo">
+              <label for="tiempo">Tiempo</label>
+              <input type="text" id="tiempo" placeholder="30 min" />
+            </div>
+
+            <div class="campo">
+              <label for="raciones">Raciones</label>
+              <input type="text" id="raciones" placeholder="4" />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="campo">
+              <label for="calorias">Calorías</label>
+              <input type="text" id="calorias" placeholder="320 kcal" />
+            </div>
+
+            <div class="campo">
+              <label for="proteinas">Proteínas</label>
+              <input type="text" id="proteinas" placeholder="18 g" />
+            </div>
+          </div>
+        </div>
+
+        <div class="bloque-form">
+          <h3>3) Contenido</h3>
+
+          <div class="campo">
+            <label for="ingredientes">Ingredientes (uno por línea)</label>
+            <textarea id="ingredientes" placeholder="250 g de lentejas&#10;1 cebolla&#10;2 zanahorias"></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="pasos">Pasos (uno por línea)</label>
+            <textarea id="pasos" placeholder="Pica y sofríe las verduras.&#10;Añade el tomate triturado.&#10;Incorpora las lentejas."></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="ideal">Ideal para</label>
+            <textarea id="ideal" placeholder="Preparar varias raciones y dejar comida lista para 2 o 3 días."></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="consejo">Consejo práctico</label>
+            <textarea id="consejo" placeholder="Guarda raciones en la nevera para tener comida lista durante 2 o 3 días."></textarea>
+          </div>
+        </div>
+
+        <div class="acciones">
+          <button class="btn-principal" id="btnGenerar" type="button">Generar receta</button>
+          <button class="btn-secundario" id="btnAutoslug" type="button">Generar slug</button>
+          
+        </div>
+      </section>
+
+      <!-- SALIDAS -->
+      <section class="salida">
+        <!-- IMPORTAR RECETA -->
+
+<div class="acciones-importar">
+
+  <button
+    id="btnImportar"
+    class="btn-principal"
+    type="button">
+
+    📥 Importar receta HTML
+
+  </button>
+
+  <input
+    type="file"
+    id="inputImportar"
+    accept=".html"
+    hidden>
+
+</div>
+        <article class="salida-panel">
+          <div class="salida-top">
+            <h2>HTML de la receta</h2>
+            <div class="salida-acciones">
+              <button class="btn-secundario" id="copiarHtml" type="button">Copiar HTML</button>
+              <button class="btn-secundario" id="descargarHtml" type="button">Descargar HTML</button>
+            </div>
+          </div>
+          <textarea id="salidaHtml" class="codigo" spellcheck="false"></textarea>
+          <p class="nota">Guárdalo como <code>recetas/slug-de-la-receta.html</code>.</p>
+        </article>
+
+        <article class="salida-panel">
+          <div class="salida-top">
+            <h2>Bloque para <code>data/recetas.js</code></h2>
+            <div class="salida-acciones">
+              <button class="btn-secundario" id="copiarJs" type="button">Copiar bloque</button>
+            </div>
+          </div>
+          <textarea id="salidaJs" class="codigo" spellcheck="false"></textarea>
+          <p class="nota">Pégalo dentro del array <code>const recetas = [ ... ]</code>.</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <script src="../data/recetas.js"></script>
+  <script>
+
+    const $ = (id) => document.getElementById(id);
+
+    const campos = {
+      titulo: $("titulo"),
+      slug: $("slug"),
+      descripcion: $("descripcion"),
+      categoria: $("categoria"),
+      tipo: $("tipo"),
+      imagen: $("imagen"),
+      subtitulo: $("subtitulo"),
+      tiempo: $("tiempo"),
+      raciones: $("raciones"),
+      calorias: $("calorias"),
+      proteinas: $("proteinas"),
+      ingredientes: $("ingredientes"),
+      pasos: $("pasos"),
+      ideal: $("ideal"),
+      consejo: $("consejo")
+    };
+
+    const salidaHtml = $("salidaHtml");
+    const salidaJs = $("salidaJs");
+
+    const btnImportar = $("btnImportar");
+    const inputImportar = $("inputImportar");
+
+    let slugEditadoManualmente = false;
+
+    function mostrarMensaje(texto, tipo = "ok") {
+
+    const mensaje = document.getElementById("mensaje");
+
+    mensaje.textContent = texto;
+
+    mensaje.className = `mensaje ${tipo}`;
+
+    setTimeout(() => {
+        mensaje.classList.add("oculto");
+    }, 4000);
+
+}
+
+    function escaparHtml(texto) {
+      return String(texto || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function escaparJs(texto) {
+      return String(texto || "")
+        .replaceAll("\\", "\\\\")
+        .replaceAll('"', '\\"');
+    }
+
+    function slugify(texto) {
+
+      
+
+      return String(texto || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/ñ/g, "n")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+   function completarDesdeRecetas(slug) {
+
+    const receta = recetas.find(r => r.slug === slug);
+
+
+    if (!receta) {
+        return;
+    }
+
+    campos.descripcion.value = receta.descripcion || "";
+    campos.categoria.value = receta.categoria || "";
+    campos.tipo.value = receta.tipo || "";
+    campos.imagen.value = receta.imagen || "";
+
+}
+
+    function lineasAListaHtml(texto) {
+      const lineas = String(texto || "")
+        .split("\n")
+        .map(l => l.trim())
+        .filter(Boolean);
+
+      return lineas
+        .map(item => `            <li>${escaparHtml(item)}</li>`)
+        .join("\n");
+    }
+
+    function recogerDatos() {
+      return {
+        titulo: campos.titulo.value.trim(),
+        slug: campos.slug.value.trim(),
+        descripcion: campos.descripcion.value.trim(),
+        categoria: campos.categoria.value.trim(),
+        tipo: campos.tipo.value,
+        imagen: campos.imagen.value.trim(),
+        subtitulo: campos.subtitulo.value.trim(),
+        tiempo: campos.tiempo.value.trim(),
+        raciones: campos.raciones.value.trim(),
+        calorias: campos.calorias.value.trim(),
+        proteinas: campos.proteinas.value.trim(),
+        ingredientes: campos.ingredientes.value.trim(),
+        pasos: campos.pasos.value.trim(),
+        ideal: campos.ideal.value.trim(),
+        consejo: campos.consejo.value.trim()
+      };
+    }
+
+    function generarHtmlReceta(data) {
+      const ingredientesHtml = lineasAListaHtml(data.ingredientes);
+      const pasosHtml = lineasAListaHtml(data.pasos);
+
+      return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${escaparHtml(data.titulo)} | Recetas para cuidarte</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/menu.css" />
+</head>
+<body>
+  
+
+  <main class="contenedor receta-detalle pagina-receta">
+
+  <div class="menu-contenedor">
+
+  <button
+    id="menu-toggle"
+    class="menu-btn"
+    aria-label="Abrir menú">
+
+    ☰ <span>Menú</span>
+
+  </button>
+
+</div>
+
+    <a href="../index.html" class="volver">← Volver a recetas</a>
+
+    <article class="receta-layout receta-printable" id="recetaPrintable">
+      <div class="receta-media">
+        <img
+          src="../${escaparHtml(data.imagen)}"
+          alt="${escaparHtml(data.titulo)}"
+          class="receta-imagen"
+        />
+      </div>
+
+      <div class="receta-contenido">
+        <p class="detalle-etiqueta">Receta saludable</p>
+        <h1>${escaparHtml(data.titulo)}</h1>
+        <p class="detalle-subtitulo">
+          ${escaparHtml(data.subtitulo)}
+        </p>
+
+        <div class="detalle-meta">
+          <div class="detalle-meta-item">
+            <span class="detalle-meta-label">Tiempo</span>
+            <strong>${escaparHtml(data.tiempo)}</strong>
+          </div>
+          <div class="detalle-meta-item">
+            <span class="detalle-meta-label">Raciones</span>
+            <strong>${escaparHtml(data.raciones)}</strong>
+          </div>
+          <div class="detalle-meta-item">
+            <span class="detalle-meta-label">Calorías</span>
+            <strong>${escaparHtml(data.calorias)}</strong>
+          </div>
+          <div class="detalle-meta-item">
+            <span class="detalle-meta-label">Proteínas</span>
+            <strong>${escaparHtml(data.proteinas)}</strong>
+          </div>
+        </div>
+
+        <div class="acciones-receta no-print">
+          <button id="btnDescargarTarjeta" class="btn-principal">Descargar tarjeta</button>
+          <button id="btnDescargarPDF" class="btn-secundario">Descargar PDF</button>
+        </div>
+
+        <section class="detalle-bloque">
+          <h2>Ingredientes</h2>
+          <ul>
+${ingredientesHtml}
+          </ul>
+        </section>
+
+        <section class="detalle-bloque">
+          <h2>Preparación</h2>
+          <ol>
+${pasosHtml}
+          </ol>
+        </section>
+
+        <section class="detalle-bloque detalle-consejo">
+          <h2>Consejo práctico</h2>
+          <p>
+            ${escaparHtml(data.consejo)}
+          </p>
+        </section>
+      </div>
+    </article>
+
+    <div class="export-wrap" aria-hidden="true">
+      <article class="tarjeta-exportable-movil-v2" id="tarjetaExportable">
+        <div class="tarjeta-v2-foto">
+          <img src="../${escaparHtml(data.imagen)}" alt="${escaparHtml(data.titulo)}">
+          <div class="tarjeta-v2-sello">🌿 RECETA SALUDABLE</div>
+        </div>
+
+        <header class="tarjeta-v2-header">
+          <h1>${escaparHtml(data.titulo)}</h1>
+          <p class="tarjeta-v2-subtitulo">
+            ${escaparHtml(data.subtitulo)}
+          </p>
+        </header>
+
+        <section class="tarjeta-v2-meta">
+          <div class="tarjeta-v2-meta-item">
+            <span>🕒 Tiempo</span>
+            <strong>${escaparHtml(data.tiempo)}</strong>
+          </div>
+          <div class="tarjeta-v2-meta-item">
+            <span>👥 Raciones</span>
+            <strong>${escaparHtml(data.raciones)}</strong>
+          </div>
+          <div class="tarjeta-v2-meta-item">
+            <span>🔥 Calorías</span>
+            <strong>${escaparHtml(data.calorias)}</strong>
+          </div>
+          <div class="tarjeta-v2-meta-item">
+            <span>💪 Proteínas</span>
+            <strong>${escaparHtml(data.proteinas)}</strong>
+          </div>
+        </section>
+
+        <section class="tarjeta-v2-bloque">
+          <h2>🥗 Ingredientes</h2>
+          <ul>
+${ingredientesHtml}
+          </ul>
+        </section>
+
+        <section class="tarjeta-v2-bloque">
+          <h2>📝 Pasos rápidos</h2>
+          <ol>
+${pasosHtml}
+          </ol>
+        </section>
+
+        <section class="tarjeta-v2-mini">
+          <h3>🍱 Ideal para</h3>
+          <p>${escaparHtml(data.ideal)}</p>
+        </section>
+
+        <section class="tarjeta-v2-consejo">
+          <h2>💡 Consejo práctico</h2>
+          <p>${escaparHtml(data.consejo)}</p>
+        </section>
+
+        <footer class="tarjeta-v2-footer">
+          <div>
+            <strong>Recetas para cuidarte</strong>
+            <p>Ideas sencillas para comer mejor cada día</p>
+          </div>
+          <span>Comer mejor, paso a paso</span>
+        </footer>
+      </article>
+    </div>
+  </main>
+<div id="menu-overlay"></div>
+
+<nav id="side-menu">
+
+    <div class="menu-header">
+        <h2>Menú</h2>
+    </div>
+
+    <a href="../index.html" class="activo">🍽️ Recetas</a>
+
+    <a href="../basicos.html">🥫 Básicos</a>
+
+    <a href="../aprende.html">📚 Aprende</a>
+
+    <a href="../sobre.html">❤️ Sobre el proyecto</a>
+
+</nav>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script>
+
+  <script>
+    const btnTarjeta = document.getElementById("btnDescargarTarjeta");
+    const btnPDF = document.getElementById("btnDescargarPDF");
+    const tarjetaExportable = document.getElementById("tarjetaExportable");
+
+    btnTarjeta.addEventListener("click", async () => {
+      btnTarjeta.textContent = "Generando tarjeta...";
+      btnTarjeta.disabled = true;
+
+      try {
+        tarjetaExportable.classList.add("export-visible");
+        await new Promise(resolve => requestAnimationFrame(resolve));
+
+        const canvas = await html2canvas(tarjetaExportable, {
+          scale: 2,
+          backgroundColor: "#f6f4ee",
+          useCORS: true,
+          logging: false
+        });
+
+        tarjetaExportable.classList.remove("export-visible");
+
+        const enlace = document.createElement("a");
+        enlace.download = "${escaparHtml(data.slug)}-tarjeta.png";
+        enlace.href = canvas.toDataURL("image/png");
+        enlace.click();
+      } catch (error) {
+        console.error("Error al generar la tarjeta:", error);
+        tarjetaExportable.classList.remove("export-visible");
+        alert("No se pudo generar la tarjeta.");
+      } finally {
+        btnTarjeta.textContent = "Descargar tarjeta";
+        btnTarjeta.disabled = false;
+      }
+    });
+
+    btnPDF.addEventListener("click", () => {
+      window.print();
+    });
+  <\/script>
+  <script src="../scripts/menu.js"><\/script>
+</body>
+</html>`;
+    }
+
+    function generarBloqueJs(data) {
+      return `{
+  titulo: "${escaparJs(data.titulo)}",
+  slug: "${escaparJs(data.slug)}",
+  imagen: "${escaparJs(data.imagen)}",
+  descripcion: "${escaparJs(data.descripcion)}",
+  categoria: "${escaparJs(data.categoria)}",
+  tipo: "${escaparJs(data.tipo)}",
+  tiempo: "${escaparJs(data.tiempo)}"
+},`;
+    }
+
+    function descargarArchivo(nombre, contenido, tipo = "text/plain;charset=utf-8") {
+      const blob = new Blob([contenido], { type: tipo });
+      const url = URL.createObjectURL(blob);
+      const enlace = document.createElement("a");
+      enlace.href = url;
+      enlace.download = nombre;
+      document.body.appendChild(enlace);
+      enlace.click();
+      enlace.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function generarTodo() {
+      const data = recogerDatos();
+
+      if (!data.titulo || !data.slug || !data.imagen) {
+        alert("Como mínimo rellena título, slug e imagen.");
+        return null;
+      }
+
+      salidaHtml.value = generarHtmlReceta(data);
+      salidaJs.value = generarBloqueJs(data);
+      return data;
+    }
+
+    // Autogenerar slug al escribir el título, salvo que ya lo hayas tocado a mano
+    campos.titulo.addEventListener("input", () => {
+      if (!slugEditadoManualmente) {
+        campos.slug.value = slugify(campos.titulo.value);
+      }
+    });
+
+    campos.slug.addEventListener("input", () => {
+      slugEditadoManualmente = true;
+    });
+
+    $("btnAutoslug").addEventListener("click", () => {
+      campos.slug.value = slugify(campos.titulo.value);
+      slugEditadoManualmente = false;
+    });
+
+    $("btnGenerar").addEventListener("click", () => {
+      generarTodo();
+    });
+
+    $("copiarHtml").addEventListener("click", async () => {
+      if (!salidaHtml.value.trim()) return;
+      await navigator.clipboard.writeText(salidaHtml.value);
+    });
+
+    $("copiarJs").addEventListener("click", async () => {
+      if (!salidaJs.value.trim()) return;
+      await navigator.clipboard.writeText(salidaJs.value);
+    });
+
+    $("descargarHtml").addEventListener("click", () => {
+      const data = generarTodo();
+      if (!data) return;
+      descargarArchivo(`${data.slug}.html`, salidaHtml.value, "text/html;charset=utf-8");
+    });
+
+    btnImportar.addEventListener("click", () => {
+      inputImportar.click();
+    });
+    inputImportar.addEventListener("change", async (e) => {
+
+  const archivo = e.target.files[0];
+
+  if (!archivo) return;
+
+  const texto = await archivo.text();
+
+  const doc = new DOMParser().parseFromString(texto, "text/html");
+
+  // Título
+campos.titulo.value =
+  doc.querySelector("h1")?.textContent.trim() || "";
+
+// Subtítulo
+campos.subtitulo.value =
+  doc.querySelector(".detalle-subtitulo")?.textContent.trim() || "";
+
+// Tiempo
+campos.tiempo.value =
+  doc.querySelectorAll(".detalle-meta-item strong")[0]?.textContent.trim() || "";
+
+// Raciones
+campos.raciones.value =
+  doc.querySelectorAll(".detalle-meta-item strong")[1]?.textContent.trim() || "";
+
+// Calorías
+campos.calorias.value =
+  doc.querySelectorAll(".detalle-meta-item strong")[2]?.textContent.trim() || "";
+
+// Proteínas
+campos.proteinas.value =
+  doc.querySelectorAll(".detalle-meta-item strong")[3]?.textContent.trim() || "";
+
+  // Ingredientes
+campos.ingredientes.value = [...doc.querySelectorAll(".detalle-bloque ul li")]
+  .map(li => li.textContent.trim())
+  .join("\n");
+
+// Pasos
+campos.pasos.value = [...doc.querySelectorAll(".detalle-bloque ol li")]
+  .map(li => li.textContent.trim())
+  .join("\n");
+
+// Consejo práctico
+campos.consejo.value =
+  doc.querySelector(".detalle-consejo p")?.textContent.trim() || "";
+
+// Ideal para
+campos.ideal.value =
+  doc.querySelector(".tarjeta-v2-mini p")?.textContent.trim() || "";
+
+  campos.slug.value = slugify(campos.titulo.value);
+
+// Ideal para
+campos.ideal.value =
+  doc.querySelector(".tarjeta-v2-mini p")?.textContent.trim() || "";
+
+// Generar slug
+campos.slug.value = slugify(campos.titulo.value);
+
+// Buscar la receta en recetas.js
+completarDesdeRecetas(campos.slug.value);
+
+generarTodo();
+
+
+mostrarMensaje(
+    "✅ Receta importada correctamente. Ya puedes editarla.",
+    "ok"
+);
+
+});
+  </script>
+</body>
+</html>

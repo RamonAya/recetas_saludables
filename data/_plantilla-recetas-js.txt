@@ -1,0 +1,9 @@
+{
+  titulo: "NOMBRE DE LA RECETA",
+  slug: "slug-de-la-receta",
+  imagen: "img/recetas/slug-de-la-receta.png",
+  descripcion: "Descripción breve de la receta.",
+  categoria: "Legumbres",
+  tipo: "Almuerzo",
+  tiempo: "30 min"
+}

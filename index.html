@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recetas Saludables</title>
+
+    <meta name="description"
+        content="Recetas saludables, sencillas y fáciles de preparar para incorporar mejores hábitos alimenticios.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/menu.css">
+</head>
+
+<body>
+
+<main class="contenedor">
+
+<div class="menu-contenedor">
+
+    <button
+        id="menu-toggle"
+        class="menu-btn"
+        aria-label="Abrir menú">
+
+        ☰ <span>Menú</span>
+
+    </button>
+
+</div>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-texto">
+
+            <span class="hero-etiqueta">
+                🌿 RECETAS SALUDABLES
+            </span>
+
+            <h1>
+                Comer bien <br> no tiene por qué ser <br> complicado.
+            </h1>
+
+            <p class="hero-descripcion">
+
+                Descubre recetas sencillas, saludables y fáciles de preparar para ayudarte a incorporar pequeños hábitos que pueden marcar la diferencia.
+
+            </p>
+
+        </div>
+
+
+
+    </section>
+
+
+
+    <!-- ================= BUSCADOR ================= -->
+
+    <section class="busqueda-home">
+
+        <div class="busqueda-box">
+
+            <span class="icono-busqueda">
+
+                🔍
+
+            </span>
+
+            <input
+                id="buscadorRecetas"
+                class="buscador-recetas"
+                type="text"
+                placeholder="Busca una receta o ingrediente...">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CATEGORÍAS ================= -->
+
+    <section
+        class="filtros-recetas"
+        aria-label="Filtrar recetas">
+
+        <button class="filtro-btn activo" data-tipo="Todas">
+
+            <span>🍽️</span>
+
+            Todas
+
+        </button>
+
+        <button class="filtro-btn" data-tipo="Desayuno">
+
+            <span>🥣</span>
+
+            Desayunos
+
+        </button>
+
+        <button class="filtro-btn" data-tipo="Almuerzo">
+
+            <span>🍲</span>
+
+            Almuerzos
+
+        </button>
+
+        <button class="filtro-btn" data-tipo="Cena">
+
+            <span>🥗</span>
+
+            Cenas
+
+        </button>
+
+        <button class="filtro-btn" data-tipo="Snack">
+
+            <span>🍎</span>
+
+            Snacks
+
+        </button>
+
+    </section>
+
+    <!-- ==================NUEVAS SECCIONES================== -->
+    
+    <section class="seccion-habito">
+
+    <div class="habito-card">
+
+        <span class="habito-icono">🌿</span>
+
+        <div>
+
+            <h3>Un pequeño hábito</h3>
+
+            <p id="textoHabito"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- ================= RECETAS ================= -->
+
+    <section class="seccion-recetas">
+
+        <header class="cabecera-recetas">
+
+            <div>
+
+                <h2>
+
+                    Recetas
+
+                </h2>
+
+                <p>
+
+                    Comer mejor empieza con pequeños cambios.
+
+                </p>
+
+            </div>
+
+ 
+
+        </header>
+
+
+        <div
+            id="gridRecetas"
+            class="grid-recetas">
+
+        </div>
+
+
+        <nav
+            id="paginacionRecetas"
+            class="paginacion-recetas">
+
+        </nav>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+
+            🌿 Recetas Saludables
+
+        </p>
+
+        <span>
+
+            Comer bien no tiene por qué ser complicado.
+
+        </span>
+
+    </footer>
+
+</main>
+
+<!-- ================= MENÚ LATERAL ================= -->
+
+<div id="menu-overlay"></div>
+
+<nav id="side-menu">
+
+    <div class="menu-header">
+        <h2>Menú</h2>
+    </div>
+
+    <a href="index.html" class="activo">🍽️ Recetas</a>
+
+    <a href="basicos.html">🥫 Básicos</a>
+
+    <a href="aprende.html">📚 Aprende</a>
+
+    <a href="sobre.html">❤️ Sobre el proyecto</a>
+
+</nav>
+
+<script src="data/recetas.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/menu.js"></script>
+
+</body>
+
+</html>

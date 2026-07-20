@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Generador de Siempre en casa</title><style>
+:root{--fondo:#f6f4ee;--panel:#fff;--borde:#dfe7d7;--verde:#49614d;--verde-claro:#edf4e9;--texto:#2f3a2f;--texto-sec:#667066;--sombra:0 10px 28px rgba(0,0,0,.06);--radio:22px}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--fondo);color:var(--texto)}
+.wrap{max-width:1200px;margin:auto;padding:28px 20px}.layout{display:grid;grid-template-columns:minmax(320px,520px) 1fr;gap:24px}.panel{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);padding:22px;box-shadow:var(--sombra)}@media(max-width:1000px){.layout{grid-template-columns:1fr}}label{display:block;font-weight:bold;margin:12px 0 6px;color:var(--verde)}input,textarea{width:100%;padding:12px;border:1px solid var(--borde);border-radius:14px}textarea{min-height:90px}button{padding:12px 18px;border:none;border-radius:999px;font-weight:bold;cursor:pointer}.btn{background:var(--verde);color:#fff}.btn2{background:var(--verde-claro)}.codigo{min-height:520px;font-family:Consolas,monospace}
+</style></head><body><main class="wrap"><h1>Generador de "Siempre en casa"</h1><p>Genera un bloque listo para pegar en <code>siempre-en-casa.js</code>.</p><div class="layout"><section class="panel">
+<label>Nombre</label><input id="nombre">
+<label>Imagen</label><input id="imagen" placeholder="img/basicos/huevos.png">
+<label>Resumen</label><input id="resumen">
+<label>¿Por qué es un básico?</label><textarea id="porque"></textarea>
+<label>Conservación</label><textarea id="conservacion"></textarea>
+<label>Ideas (una por línea)</label><textarea id="ideas"></textarea>
+<label>Combina con (una por línea)</label><textarea id="combina"></textarea><br><br>
+<button class="btn" id="generar">Generar bloque</button></section>
+<section class="panel"><button class="btn2" id="copiar">Copiar código</button><br><br><textarea id="salida" class="codigo"></textarea></section></div></main>
+<script>
+const $=i=>document.getElementById(i);
+function arr(id){return $(id).value.split("\n").map(x=>x.trim()).filter(Boolean).map(x=>'        "'+x.replace(/"/g,'\\\"')+'"').join(",\n");}
+generar.onclick=()=>{salida.value=`{
+    nombre: "${nombre.value}",
+
+    imagen: "${imagen.value}",
+
+    resumen: "${resumen.value}",
+
+    porque:
+        "${porque.value.replace(/"/g,'\\\"')}",
+
+    ideas: [
+${arr("ideas")}
+    ],
+
+    conservacion:
+        "${conservacion.value.replace(/"/g,'\\\"')}",
+
+    combina: [
+${arr("combina")}
+    ]
+},`;};
+copiar.onclick=()=>navigator.clipboard.writeText(salida.value);
+</script></body></html>

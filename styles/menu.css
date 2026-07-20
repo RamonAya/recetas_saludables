@@ -1,0 +1,204 @@
+/*=========================
+  CABECERA
+=========================*/
+.menu-contenedor{
+
+    margin-bottom:24px;
+
+}
+
+
+/*=========================
+ BOTÓN
+=========================*/
+
+.menu-btn{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#ffffff;
+
+    color:#486247;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+.menu-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+}
+.menu-btn:active{
+
+    transform:scale(.97);
+
+} 
+
+#menu-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:900;
+
+}
+#side-menu{
+
+    position: fixed;
+
+    top: 0;
+    left: -320px;
+
+    width: 285px;
+    height: 100vh;
+
+    background:#fcfcfa;
+
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+
+    box-shadow: 10px 0 30px rgba(0,0,0,.10);
+
+    transition: left .35s ease;
+
+    z-index: 1000;
+
+    overflow: hidden;
+
+}
+.menu-header{
+
+    padding: 20px 24px;
+
+    background: #f8f8f5;
+
+    border-bottom: 1px solid #e9e9e9;
+
+}
+
+.menu-header h2{
+
+    margin: 0;
+
+    color: #486247;
+
+    font-size: 1.25rem;
+
+    font-weight: 700;
+
+}
+#side-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    min-height:54px;
+
+    padding:0 24px;
+
+    color:#486247;
+
+    text-decoration:none;
+
+    font-size: 1.05rem;
+
+    font-weight: 500;
+
+    letter-spacing: .2px;
+
+
+    transition:background .2s;
+
+    border-bottom:1px solid #ececec;
+
+
+}
+#side-menu a:hover{
+
+    background:#f4f7f2;
+
+}
+.menu-header::after{
+
+    content:"";
+
+    display:block;
+
+    width:42px;
+
+    height:3px;
+
+    margin-top:12px;
+
+    border-radius:20px;
+
+    background:#7ca66b;
+
+}
+/* ==========================
+   ESTADO ABIERTO
+========================== */
+
+#side-menu.abierto{
+
+    left: 0;
+
+}
+
+#menu-overlay.abierto{
+
+    opacity: 1;
+    visibility: visible;
+
+}
+#side-menu a:not(:last-child){
+
+    border-bottom: none;
+
+    
+
+}
+
+/* ==========================
+   OPCIÓN ACTIVA
+========================== */
+
+#side-menu a.activo{
+
+    background:#eef5eb;
+
+    color:#486247;
+
+    font-weight:600;
+
+    border-left:4px solid #6f9b60;
+
+}
