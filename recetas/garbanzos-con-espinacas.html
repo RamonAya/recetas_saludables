@@ -5,28 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Garbanzos con espinacas | Recetas para cuidarte</title>
   <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/menu.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="contenedor">
-      <a href="../index.html" class="logo">Recetas para cuidarte</a>
-    </div>
-  </header>
+  
 
   <main class="contenedor receta-detalle pagina-receta">
+
+  <div class="menu-contenedor">
+
+  <button
+    id="menu-toggle"
+    class="menu-btn"
+    aria-label="Abrir menú">
+
+    ☰ <span>Menú</span>
+
+  </button>
+
+</div>
+
     <a href="../index.html" class="volver">← Volver a recetas</a>
 
     <article class="receta-layout receta-printable" id="recetaPrintable">
-      <!-- COLUMNA IZQUIERDA -->
       <div class="receta-media">
         <img
-          src="../img/recetas/garbanzos-con-espinacas.png"
+          src="../img/recetas/garbanzos-con-espinacas.webp"
           alt="Garbanzos con espinacas"
           class="receta-imagen"
         />
       </div>
 
-      <!-- COLUMNA DERECHA -->
       <div class="receta-contenido">
         <p class="detalle-etiqueta">Receta saludable</p>
         <h1>Garbanzos con espinacas</h1>
@@ -96,16 +105,13 @@
       </div>
     </article>
 
-    <!-- TARJETA SOLO PARA EXPORTAR -->
     <div class="export-wrap" aria-hidden="true">
       <article class="tarjeta-exportable-movil-v2" id="tarjetaExportable">
-        <!-- FOTO HERO -->
         <div class="tarjeta-v2-foto">
-          <img src="../img/recetas/garbanzos-con-espinacas.png" alt="Garbanzos con espinacas">
+          <img src="../img/recetas/garbanzos-con-espinacas.webp" alt="Garbanzos con espinacas">
           <div class="tarjeta-v2-sello">🌿 RECETA SALUDABLE</div>
         </div>
 
-        <!-- CABECERA -->
         <header class="tarjeta-v2-header">
           <h1>Garbanzos con espinacas</h1>
           <p class="tarjeta-v2-subtitulo">
@@ -113,7 +119,6 @@
           </p>
         </header>
 
-        <!-- META -->
         <section class="tarjeta-v2-meta">
           <div class="tarjeta-v2-meta-item">
             <span>🕒 Tiempo</span>
@@ -133,9 +138,8 @@
           </div>
         </section>
 
-        <!-- INGREDIENTES -->
         <section class="tarjeta-v2-bloque">
-          <h2>🧄 Ingredientes</h2>
+          <h2>🥗 Ingredientes</h2>
           <ul>
             <li>500 g de garbanzos cocidos</li>
             <li>400 g de espinacas frescas o congeladas</li>
@@ -151,29 +155,26 @@
           </ul>
         </section>
 
-        <!-- PASOS -->
         <section class="tarjeta-v2-bloque">
           <h2>📝 Pasos rápidos</h2>
           <ol>
-            <li>Fríe la rebanada de pan y resérvala.</li>
-            <li>Sofríe ajo, pimentón, comino y tomate.</li>
-            <li>Tritura ese sofrito con el pan y el vinagre.</li>
-            <li>Saltea las espinacas y añade los garbanzos.</li>
-            <li>Incorpora la pasta, agrega el agua y cocina unos minutos.</li>
-            <li>Ajusta de sal y deja reposar antes de servir.</li>
+            <li>Dora la rebanada de pan en una sartén con un poco de aceite y resérvala.</li>
+            <li>En la misma sartén sofríe dos dientes de ajo. Añade el pimentón, el comino y el tomate triturado.</li>
+            <li>Tritura el pan frito con ese sofrito y el vinagre hasta obtener una pasta espesa.</li>
+            <li>En una cazuela aparte, saltea el ajo restante con un poco de aceite e incorpora las espinacas hasta que reduzcan.</li>
+            <li>Añade los garbanzos, la pasta que has triturado y el agua. Mezcla bien.</li>
+            <li>Cocina 5-10 minutos a fuego suave hasta que espese y los sabores se integren. Ajusta de sal y sirve caliente.</li>
           </ol>
         </section>
 
-        <!-- IDEAL PARA -->
         <section class="tarjeta-v2-mini">
           <h3>🍱 Ideal para</h3>
           <p>Preparar una comida completa y dejar un par de raciones listas para otro día.</p>
         </section>
 
-        <!-- CONSEJO -->
         <section class="tarjeta-v2-consejo">
           <h2>💡 Consejo práctico</h2>
-          <p>Si los haces con unas horas de reposo o de un día para otro, el sabor mejora bastante.</p>
+          <p>Si los haces de un día para otro ganan sabor, así que son muy buena opción para cocinar con antelación.</p>
         </section>
 
         <footer class="tarjeta-v2-footer">
@@ -186,7 +187,23 @@
       </article>
     </div>
   </main>
+<div id="menu-overlay"></div>
 
+<nav id="side-menu">
+
+    <div class="menu-header">
+        <h2>Menú</h2>
+    </div>
+
+    <a href="../index.html" class="activo">🍽️ Recetas</a>
+
+    <a href="../basicos.html">🥫 Básicos</a>
+
+    <a href="../aprende.html">📚 Aprende</a>
+
+    <a href="../sobre.html">❤️ Sobre el proyecto</a>
+
+</nav>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <script>
@@ -200,7 +217,6 @@
 
       try {
         tarjetaExportable.classList.add("export-visible");
-
         await new Promise(resolve => requestAnimationFrame(resolve));
 
         const canvas = await html2canvas(tarjetaExportable, {
@@ -230,5 +246,6 @@
       window.print();
     });
   </script>
+  <script src="../scripts/menu.js"></script>
 </body>
 </html>

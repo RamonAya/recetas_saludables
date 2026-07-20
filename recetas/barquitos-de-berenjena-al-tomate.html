@@ -5,21 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barquitos de berenjena al tomate | Recetas para cuidarte</title>
   <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/menu.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="contenedor">
-      <a href="../index.html" class="logo">Recetas para cuidarte</a>
-    </div>
-  </header>
+  
 
   <main class="contenedor receta-detalle pagina-receta">
+
+  <div class="menu-contenedor">
+
+  <button
+    id="menu-toggle"
+    class="menu-btn"
+    aria-label="Abrir menú">
+
+    ☰ <span>Menú</span>
+
+  </button>
+
+</div>
+
     <a href="../index.html" class="volver">← Volver a recetas</a>
 
     <article class="receta-layout receta-printable" id="recetaPrintable">
       <div class="receta-media">
         <img
-          src="../img/recetas/barquitos-de-berenjena-al-tomate.png"
+          src="../img/recetas/barquitos-de-berenjena-al-tomate.webp"
           alt="Barquitos de berenjena al tomate"
           class="receta-imagen"
         />
@@ -95,7 +106,7 @@
     <div class="export-wrap" aria-hidden="true">
       <article class="tarjeta-exportable-movil-v2" id="tarjetaExportable">
         <div class="tarjeta-v2-foto">
-          <img src="../img/recetas/barquitos-de-berenjena-al-tomate.png" alt="Barquitos de berenjena al tomate">
+          <img src="../img/recetas/barquitos-de-berenjena-al-tomate.webp" alt="Barquitos de berenjena al tomate">
           <div class="tarjeta-v2-sello">🌿 RECETA SALUDABLE</div>
         </div>
 
@@ -172,7 +183,23 @@
       </article>
     </div>
   </main>
+<div id="menu-overlay"></div>
 
+<nav id="side-menu">
+
+    <div class="menu-header">
+        <h2>Menú</h2>
+    </div>
+
+    <a href="../index.html" class="activo">🍽️ Recetas</a>
+
+    <a href="../basicos.html">🥫 Básicos</a>
+
+    <a href="../aprende.html">📚 Aprende</a>
+
+    <a href="../sobre.html">❤️ Sobre el proyecto</a>
+
+</nav>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <script>
@@ -215,5 +242,6 @@
       window.print();
     });
   </script>
+  <script src="../scripts/menu.js"></script>
 </body>
 </html>
