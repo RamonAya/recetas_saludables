@@ -43,3 +43,6 @@ formularioBusqueda.addEventListener("submit", (e) => {
 });
 
 inputBusqueda.addEventListener("input", aplicarFiltros);
+
+// Aplicar el filtro inicial ("Todas")
+aplicarFiltros();

@@ -48,6 +48,8 @@ if(textoHabito){
   }
 
   function renderRecetas(lista) {
+  
+
     if (!lista.length) {
       contenedor.innerHTML = `
         <div class="sin-resultados">
@@ -126,7 +128,6 @@ if(textoHabito){
 
   function actualizarVista() {
     const listaFiltrada = filtrarRecetas();
-
     const totalPaginas = Math.max(1, Math.ceil(listaFiltrada.length / RECETAS_POR_PAGINA));
     if (paginaActual > totalPaginas) paginaActual = 1;
 
@@ -142,15 +143,7 @@ if(textoHabito){
     });
   }
 
-  botonesFiltro.forEach(boton => {
-    boton.addEventListener("click", () => {
-      botonesFiltro.forEach(btn => btn.classList.remove("activo"));
-      boton.classList.add("activo");
-      filtroActivo = boton.dataset.tipo;
-      paginaActual = 1;
-      actualizarVista();
-    });
-  });
+ 
 
    botonesFiltro.forEach(boton => {
     boton.addEventListener("click", () => {
@@ -168,9 +161,7 @@ if(textoHabito){
 if (contadorRecetas) {
     contadorRecetas.textContent = `${recetas.length} recetas para descubrir`;
 }
-  if (contadorHero) {
-    contadorHero.textContent = `${recetas.length} recetas`;
-  }
+  
 
   actualizarVista();
 });
