@@ -40,7 +40,13 @@ if(textoHabito){
       const coincideTipo =
         filtroActivo === "Todas" || receta.tipo === filtroActivo;
 
-      const texto = `${receta.titulo} ${receta.descripcion} ${receta.categoria} ${receta.tipo}`.toLowerCase();
+      const texto = `
+  ${receta.titulo}
+  ${receta.descripcion}
+  ${receta.categoria}
+  ${receta.tipo}
+  ${(receta.keywords || []).join(" ")}
+`.toLowerCase();
       const coincideBusqueda = texto.includes(textoBusqueda.toLowerCase());
 
       return coincideTipo && coincideBusqueda;

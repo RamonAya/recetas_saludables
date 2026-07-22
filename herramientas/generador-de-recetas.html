@@ -291,6 +291,16 @@
             <textarea id="descripcion" placeholder="Texto breve que aparece en la tarjeta del index"></textarea>
           </div>
 
+          <div class="campo">
+  <label for="keywords">Palabras clave</label>
+  <textarea
+    id="keywords"
+    placeholder="Ej. pollo, arroz, proteína, rápido, tupper, económico"></textarea>
+  <p class="mini-ayuda">
+    Separa las palabras con comas. Servirán para el buscador de la web.
+  </p>
+</div>
+
           <div class="grid-2">
             <div class="campo">
               <label for="categoria">Categoría</label>
@@ -435,6 +445,7 @@
       titulo: $("titulo"),
       slug: $("slug"),
       descripcion: $("descripcion"),
+      keywords: $("keywords"),
       categoria: $("categoria"),
       tipo: $("tipo"),
       imagen: $("imagen"),
@@ -530,6 +541,7 @@
         titulo: campos.titulo.value.trim(),
         slug: campos.slug.value.trim(),
         descripcion: campos.descripcion.value.trim(),
+        keywords: campos.keywords.value.trim(),
         categoria: campos.categoria.value.trim(),
         tipo: campos.tipo.value,
         imagen: campos.imagen.value.trim(),
@@ -773,16 +785,29 @@ ${pasosHtml}
     }
 
     function generarBloqueJs(data) {
-      return `{
+
+  const keywords = data.keywords
+    ? data.keywords
+        .split(",")
+        .map(k => k.trim())
+        .filter(Boolean)
+        .map(k => `    "${escaparJs(k)}"`)
+        .join(",\n")
+    : "";
+
+  return `{
   titulo: "${escaparJs(data.titulo)}",
   slug: "${escaparJs(data.slug)}",
   imagen: "${escaparJs(data.imagen)}",
   descripcion: "${escaparJs(data.descripcion)}",
+  keywords: [
+${keywords}
+  ],
   categoria: "${escaparJs(data.categoria)}",
   tipo: "${escaparJs(data.tipo)}",
   tiempo: "${escaparJs(data.tiempo)}"
 },`;
-    }
+}
 
     function descargarArchivo(nombre, contenido, tipo = "text/plain;charset=utf-8") {
       const blob = new Blob([contenido], { type: tipo });
