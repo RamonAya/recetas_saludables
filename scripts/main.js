@@ -47,7 +47,14 @@ if(textoHabito){
   ${receta.tipo}
   ${(receta.keywords || []).join(" ")}
 `.toLowerCase();
-      const coincideBusqueda = texto.includes(textoBusqueda.toLowerCase());
+      const palabras = textoBusqueda
+  .toLowerCase()
+  .split(/[,\s]+/)
+  .filter(Boolean);
+
+const coincideBusqueda = palabras.every(palabra =>
+  texto.includes(palabra)
+);
 
       return coincideTipo && coincideBusqueda;
     });
