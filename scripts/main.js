@@ -24,6 +24,7 @@ if(textoHabito){
 }
   const contenedor = document.getElementById("gridRecetas");
   const paginacion = document.getElementById("paginacionRecetas");
+  const contadorRecetas = document.getElementById("contadorRecetas");
   const buscador = document.getElementById("buscadorRecetas");
   const botonesFiltro = document.querySelectorAll(".filtro-btn");
 
@@ -61,14 +62,33 @@ const coincideBusqueda = palabras.every(palabra =>
   }
 
   function renderRecetas(lista) {
+
+  const hayBusqueda = textoBusqueda !== "";
+const hayFiltro = filtroActivo !== "Todas";
+
+if (hayBusqueda || hayFiltro) {
+    contadorRecetas.textContent =
+        `${lista.length} receta${lista.length !== 1 ? "s" : ""} encontrada${lista.length !== 1 ? "s" : ""}`;
+} else {
+    contadorRecetas.textContent =
+        `${lista.length} receta${lista.length !== 1 ? "s" : ""} disponible${lista.length !== 1 ? "s" : ""}`;
+}
   
 
     if (!lista.length) {
       contenedor.innerHTML = `
-        <div class="sin-resultados">
-          <p>No se han encontrado recetas con esos filtros.</p>
-        </div>
-      `;
+  <div class="sin-resultados">
+
+    <div class="sin-resultados-icono">🥗</div>
+
+    <h3>No hemos encontrado ninguna receta</h3>
+
+    <p>
+      Prueba con otros ingredientes o escribe menos palabras.
+    </p>
+
+  </div>
+`;
       paginacion.innerHTML = "";
       return;
     }
@@ -169,7 +189,6 @@ const coincideBusqueda = palabras.every(palabra =>
   });
 
   // Mostrar el número de recetas en el Hero
-  const contadorRecetas = document.getElementById("contadorRecetas");
 
 if (contadorRecetas) {
     contadorRecetas.textContent = `${recetas.length} recetas para descubrir`;
