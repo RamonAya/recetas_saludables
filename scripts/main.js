@@ -41,13 +41,13 @@ if(textoHabito){
       const coincideTipo =
         filtroActivo === "Todas" || receta.tipo === filtroActivo;
 
-      const texto = `
-  ${receta.titulo}
-  ${receta.descripcion}
-  ${receta.categoria}
-  ${receta.tipo}
-  ${(receta.keywords || []).join(" ")}
-`.toLowerCase();
+     const texto = [
+    receta.titulo,
+    receta.descripcion,
+    receta.categoria,
+    receta.tipo,
+    ...(receta.keywords || [])
+].join(" ").toLowerCase();
       const palabras = textoBusqueda
   .toLowerCase()
   .split(/[,\s]+/)
@@ -188,11 +188,7 @@ if (hayBusqueda || hayFiltro) {
     });
   });
 
-  // Mostrar el número de recetas en el Hero
-
-if (contadorRecetas) {
-    contadorRecetas.textContent = `${recetas.length} recetas para descubrir`;
-}
+ 
   
 
   actualizarVista();
