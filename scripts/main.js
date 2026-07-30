@@ -99,30 +99,35 @@ if (hayBusqueda || hayFiltro) {
 
     contenedor.innerHTML = recetasPagina.map(receta => {
       return `
-        <article class="card-receta">
-          <div class="card-receta-imagen-wrap">
-            <img
-              src="${receta.imagen}"
-              alt="${receta.titulo}"
-              class="card-receta-imagen"
-            />
-          </div>
+<a href="recetas/${receta.slug}.html" class="card-receta-link">
+  <article class="card-receta">
 
-          <div class="card-receta-contenido">
-            <div class="card-receta-top">
-              <span class="card-receta-categoria">${receta.categoria}</span>
-              <span class="card-receta-tiempo">🕒 ${receta.tiempo}</span>
-            </div>
+    <div class="card-receta-imagen-wrap">
+      <img
+        src="${receta.imagen}"
+        alt="${receta.titulo}"
+        class="card-receta-imagen"
+      />
+    </div>
 
-            <h2>${receta.titulo}</h2>
-            <p>${receta.descripcion}</p>
+    <div class="card-receta-contenido">
+      <div class="card-receta-top">
+        <span class="card-receta-categoria">${receta.categoria}</span>
+        <span class="card-receta-tiempo">🕒 ${receta.tiempo}</span>
+      </div>
 
-            <div class="card-receta-acciones">
-              <a href="recetas/${receta.slug}.html" class="btn-principal">Ver receta</a>
-            </div>
-          </div>
-        </article>
-      `;
+      <h2 class="card-receta-titulo">${receta.titulo}</h2>
+
+      <p>${receta.descripcion}</p>
+      <span class="card-receta-link-text">
+    Ver receta →
+</span>
+
+    </div>
+
+  </article>
+</a>
+`;
     }).join("");
   }
 

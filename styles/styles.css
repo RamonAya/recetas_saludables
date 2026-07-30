@@ -2002,16 +2002,23 @@ a {
   align-items: start;
 }
 
-.card-receta {
-  width: 100%;
-  max-width: none;
-  background: #fff;
-  border: 1px solid var(--borde-suave);
-  border-radius: 26px;
-  overflow: hidden;
-  box-shadow: var(--sombra-suave, 0 8px 24px rgba(0,0,0,0.05));
-  display: flex;
-  flex-direction: column;
+.card-receta{
+    width: 100%;
+    max-width: none;
+    background: #fff;
+    border: 1px solid var(--borde-suave);
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: var(--sombra-suave, 0 8px 24px rgba(0,0,0,0.05));
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+}
+.card-receta-link:active .card-receta{
+    transform:scale(.985);
 }
 
 @media (max-width: 900px) {
@@ -2857,4 +2864,30 @@ a {
     font-size:.95rem;
     color:#6b7280;
     font-weight:500;
+}
+
+.card-receta-link{
+    display:block;
+    color:inherit;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.card-receta-link-text{
+    display:inline-block;
+    margin-top:16px;
+    color:var(--verde-oscuro);
+    font-weight:700;
+    transition:transform .2s ease;
+}
+
+.card-receta-link:hover .card-receta{
+    transform: translateY(-4px);
+}
+
+.card-receta-link:active .card-receta{
+    transform: translateY(-2px) scale(.985);
+}
+.card-receta-link:hover .card-receta-titulo{
+    color: var(--verde-oscuro);
 }
