@@ -13,6 +13,7 @@ RECETAS SALUDABLES 2.0
 --border:#e6ebe4;
 --shadow:0 12px 30px rgba(0,0,0,.06);
 --radius:28px;
+color-scheme: light;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -2016,9 +2017,11 @@ a {
     transition:
         transform .15s ease,
         box-shadow .15s ease;
+        filter .15s ease;
 }
 .card-receta-link:active .card-receta{
-    transform:scale(.985);
+    transform: scale(.98);
+    filter: brightness(.94);
 }
 
 @media (max-width: 900px) {
@@ -2039,6 +2042,9 @@ a {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition:
+        transform .2s ease,
+        filter .2s ease;
 }
 
 .card-receta-contenido {
@@ -2890,4 +2896,8 @@ a {
 }
 .card-receta-link:hover .card-receta-titulo{
     color: var(--verde-oscuro);
+}
+.card-receta-link:active .card-receta-imagen{
+    transform: scale(1.02);
+    filter: brightness(.90);
 }
