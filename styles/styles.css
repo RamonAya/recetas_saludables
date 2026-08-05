@@ -1648,14 +1648,21 @@ a {
 @media print {
   body {
     background: #fff;
-  }
 
-  .site-header,
-  .volver,
-  .no-print,
-  .export-wrap {
-    display: none !important;
+    
   }
+  
+
+ .site-header,
+.volver,
+.no-print,
+.export-wrap,
+.menu-contenedor,
+.menu-btn,
+#side-menu,
+#menu-overlay {
+    display: none !important;
+}
 
   .contenedor {
     max-width: none;
@@ -1668,46 +1675,82 @@ a {
     padding: 0;
   }
 
-  .receta-layout {
+ .receta-layout {
     display: block;
-  }
-
-  .receta-media {
-    position: static;
-    margin-bottom: 24px;
-  }
-
-  .receta-imagen {
-    max-width: 720px;
-    border-radius: 18px;
-    box-shadow: none;
-  }
-
-  .receta-contenido h1 {
-    font-size: 28pt;
-  }
-
-  .detalle-subtitulo {
-    font-size: 12pt;
-    max-width: none;
-  }
-
-  .detalle-meta {
-    grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 18px;
-  }
-
-  .detalle-meta-item,
-  .detalle-bloque {
-    box-shadow: none;
     break-inside: avoid;
     page-break-inside: avoid;
-  }
-
-  .detalle-bloque {
-    margin-top: 14px;
-  }
 }
+.receta-layout + .receta-layout {
+    break-before: page;
+    page-break-before: always;
+}
+
+ .receta-media {
+    position: static;
+    /* float: left; */
+    width: 180px;
+    margin: 0 20px 15px 0;
+}
+
+ 
+
+ .receta-contenido h1 {
+    font-size: 24pt;
+    margin-bottom: 8px;
+}
+
+  .detalle-subtitulo {
+    font-size: 11pt;
+    margin-bottom: 12px;
+}
+
+ .detalle-meta{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:8px;
+
+    margin-bottom:10px;
+
+}
+
+  .detalle-meta-item{
+
+    padding:8px 10px;
+
+}
+
+  .detalle-bloque{
+
+    padding:10px 12px;
+
+    margin-top:6px;
+
+}
+
+.receta-imagen {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: none;
+}
+.receta-contenido {
+    overflow: hidden;
+}
+.detalle-bloque ul,
+.detalle-bloque ol{
+    line-height:1.4;
+}
+
+.detalle-bloque li{
+    margin-bottom:2px;
+}
+}
+
+
 
 /* =========================================================
    RESPONSIVE RECETA
@@ -2016,7 +2059,7 @@ a {
 
     transition:
         transform .15s ease,
-        box-shadow .15s ease;
+        box-shadow .15s ease,
         filter .15s ease;
 }
 .card-receta-link:active .card-receta{
