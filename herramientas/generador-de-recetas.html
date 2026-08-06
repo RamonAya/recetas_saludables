@@ -424,18 +424,6 @@
 
         <article class="salida-panel">
           <div class="salida-top">
-           <h2>HTML PDF</h2>
-            <div class="salida-acciones">
-              <button class="btn-secundario" id="copiarPdf" type="button">Copiar HTML</button>
-              <button class="btn-secundario" id="descargarPdf" type="button">Descargar HTML</button>
-            </div>
-          </div>
-          <textarea id="salidaPdf" class="codigo" spellcheck="false"></textarea>
-          <p class="nota">Guárdalo como <code>recetas/slug-pdf.html</code>.</p>
-        </article>
-
-        <article class="salida-panel">
-          <div class="salida-top">
             <h2>Bloque para <code>data/recetas.js</code></h2>
             <div class="salida-acciones">
               <button class="btn-secundario" id="copiarJs" type="button">Copiar bloque</button>
@@ -473,7 +461,6 @@
     };
 
     const salidaHtml = $("salidaHtml");
-    const salidaPdf = $("salidaPdf");
     const salidaJs = $("salidaJs");
 
     const btnImportar = $("btnImportar");
@@ -797,109 +784,6 @@ ${pasosHtml}
 </html>`;
     }
     
-     function generarHtmlPDF(data) {
-      const ingredientesHtml = lineasAListaHtml(data.ingredientes);
-      const pasosHtml = lineasAListaHtml(data.pasos);
-
-      return `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${escaparHtml(data.titulo)} | Recetas para cuidarte</title>
-  <link rel="stylesheet" href="../styles/styles.css" />
-  <link rel="stylesheet" href="../styles/menu.css" />
-</head>
-<body>
-  <main class="contenedor receta-detalle pagina-receta">
-    <article class="receta-layout receta-printable">
-      <div class="receta-media">
-        <img
-          src="../${escaparHtml(data.imagen)}"
-          alt="${escaparHtml(data.titulo)}"
-          class="receta-imagen"
-        />
-      </div>
-
-      <div class="receta-contenido">
-        <p class="detalle-etiqueta">Receta saludable</p>
-        <h1>${escaparHtml(data.titulo)}</h1>
-        <p class="detalle-subtitulo">
-          ${escaparHtml(data.subtitulo)}
-        </p>
-
-        <div class="detalle-meta">
-          <div class="detalle-meta-item">
-            <span class="detalle-meta-label">Tiempo</span>
-            <strong>${escaparHtml(data.tiempo)}</strong>
-          </div>
-          <div class="detalle-meta-item">
-            <span class="detalle-meta-label">Raciones</span>
-            <strong>${escaparHtml(data.raciones)}</strong>
-          </div>
-          <div class="detalle-meta-item">
-            <span class="detalle-meta-label">Calorías</span>
-            <strong>${escaparHtml(data.calorias)}</strong>
-          </div>
-          <div class="detalle-meta-item">
-            <span class="detalle-meta-label">Proteínas</span>
-            <strong>${escaparHtml(data.proteinas)}</strong>
-          </div>
-        </div>
-
-        <section class="detalle-bloque">
-          <h2>Ingredientes</h2>
-          <ul>
-${ingredientesHtml}
-          </ul>
-        </section>
-      </div>
-    </article>
-
-    <div class="salto-pagina"></div>
-
-    <article class="receta-layout">
-      <div class="receta-media">
-        <img
-          src="../${escaparHtml(data.imagen)}"
-          alt="${escaparHtml(data.titulo)}"
-          class="receta-imagen"
-        />
-      </div>
-
-      <div class="receta-contenido">
-        <p class="detalle-etiqueta">Receta saludable</p>
-        <h1>${escaparHtml(data.titulo)}</h1>
-        <p class="detalle-subtitulo">
-          ${escaparHtml(data.subtitulo)}
-        </p>
-
-        <section class="detalle-bloque">
-          <h2>Preparación</h2>
-          <ol>
-${pasosHtml}
-          </ol>
-        </section>
-
-        <section class="detalle-bloque detalle-consejo">
-          <h2>Consejo práctico</h2>
-          <p>
-            ${escaparHtml(data.consejo)}
-          </p>
-        </section>
-      </div>
-    </article>
-  </main>
-
-  <script>
-window.addEventListener("load", () => {
-    window.print();
-});
-<\/script>
-
-</body>
-</html>`;
-    }
 
     function generarBloqueJs(data) {
 
@@ -947,7 +831,6 @@ ${keywords}
       }
 
       salidaHtml.value = generarHtmlReceta(data);
-      salidaPdf.value = generarHtmlPDF(data);
       salidaJs.value = generarBloqueJs(data);
       return data;
     }
@@ -977,11 +860,6 @@ ${keywords}
       await navigator.clipboard.writeText(salidaHtml.value);
     });
 
-    $("copiarPdf").addEventListener("click", async () => {
-      if (!salidaPdf.value.trim()) return;
-      await navigator.clipboard.writeText(salidaPdf.value);
-    });
-
     $("copiarJs").addEventListener("click", async () => {
       if (!salidaJs.value.trim()) return;
       await navigator.clipboard.writeText(salidaJs.value);
@@ -991,12 +869,6 @@ ${keywords}
       const data = generarTodo();
       if (!data) return;
       descargarArchivo(`${data.slug}.html`, salidaHtml.value, "text/html;charset=utf-8");
-    });
-
-    $("descargarPdf").addEventListener("click", () => {
-    const data = generarTodo();
-    if (!data) return;
-    descargarArchivo(`${data.slug}-pdf.html`, salidaPdf.value, "text/html;charset=utf-8");
     });
 
     btnImportar.addEventListener("click", () => {
