@@ -64,7 +64,7 @@
 
         <div class="acciones-receta no-print">
           <button id="btnDescargarTarjeta" class="btn-principal">Descargar tarjeta</button>
-          <button id="btnDescargarPDF" class="btn-secundario">Descargar PDF</button>
+          <button id="btnImprimir" class="btn-secundario">Imprimir</button>
         </div>
 
         <section class="detalle-bloque">
@@ -212,7 +212,7 @@
 
   <script>
     const btnTarjeta = document.getElementById("btnDescargarTarjeta");
-    const btnPDF = document.getElementById("btnDescargarPDF");
+    const btnImprimir = document.getElementById("btnImprimir");
     const tarjetaExportable = document.getElementById("tarjetaExportable");
 
     btnTarjeta.addEventListener("click", async () => {
@@ -246,7 +246,7 @@
       }
     });
 
-    btnPDF.addEventListener("click", () => {
+    btnImprimir.addEventListener("click", () => {
       window.print();
     });
   </script>

@@ -30,7 +30,7 @@
     <article class="receta-layout receta-printable" id="recetaPrintable">
       <div class="receta-media">
         <img
-          src="../img/recetas/pollo-en-pepitoria.webp"
+          src="../img/recetas/pollo-al-curry-cremoso-en-10-minutos.webp"
           alt="Pollo en pepitoria"
           class="receta-imagen"
         />
@@ -64,7 +64,7 @@
 
         <div class="acciones-receta no-print">
           <button id="btnDescargarTarjeta" class="btn-principal">Descargar tarjeta</button>
-          <button id="btnDescargarPDF" class="btn-secundario">Descargar PDF</button>
+          <button id="btnImprimir" class="btn-secundario">Imprimir</button>
         </div>
 
         <section class="detalle-bloque">
@@ -93,7 +93,7 @@
     <div class="export-wrap" aria-hidden="true">
       <article class="tarjeta-exportable-movil-v2" id="tarjetaExportable">
         <div class="tarjeta-v2-foto">
-          <img src="../img/recetas/pollo-en-pepitoria.webp" alt="Pollo en pepitoria">
+          <img src="../img/recetas/pollo-al-curry-cremoso-en-10-minutos.webp" alt="Pollo en pepitoria">
           <div class="tarjeta-v2-sello">🌿 RECETA SALUDABLE</div>
         </div>
 
@@ -178,7 +178,7 @@
 
   <script>
     const btnTarjeta = document.getElementById("btnDescargarTarjeta");
-    const btnPDF = document.getElementById("btnDescargarPDF");
+    const btnImprimir = document.getElementById("btnImprimir");
     const tarjetaExportable = document.getElementById("tarjetaExportable");
 
     btnTarjeta.addEventListener("click", async () => {
@@ -212,7 +212,7 @@
       }
     });
 
-    btnPDF.addEventListener("click", () => {
+    btnImprimir.addEventListener("click", () => {
       window.print();
     });
   </script>
