@@ -583,6 +583,13 @@
       };
     }
 
+    function obtenerSiguienteOrden() {
+      const ordenes = recetas
+        .map(receta => Number.isInteger(receta.orden) ? receta.orden : 0);
+
+      return Math.max(0, ...ordenes) + 1;
+    }
+
     function generarHtmlReceta(data) {
       const ingredientesHtml = lineasAListaHtml(data.ingredientes);
       const pasosHtml = lineasAListaHtml(data.pasos);
@@ -823,6 +830,7 @@ ${pasosHtml}
     : "";
 
   return `{
+  orden: ${data.orden},
   titulo: "${escaparJs(data.titulo)}",
   slug: "${escaparJs(data.slug)}",
   imagen: "${escaparJs(data.imagen)}",
@@ -855,6 +863,8 @@ ${keywords}
         alert("Como mínimo rellena título, slug e imagen.");
         return null;
       }
+
+      data.orden = obtenerSiguienteOrden();
 
       salidaHtml.value = generarHtmlReceta(data);
       salidaJs.value = generarBloqueJs(data);

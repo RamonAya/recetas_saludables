@@ -1,5 +1,6 @@
 const recetas = [
   {
+    orden: 1,
     titulo: "Lentejas con verduras",
     slug: "lentejas-con-verduras",
     imagen: "img/recetas/lentejas-con-verduras.webp",
@@ -22,6 +23,7 @@ const recetas = [
     tiempo: "35 min"
   },
   {
+    orden: 2,
     titulo: "Garbanzos con espinacas",
     slug: "garbanzos-con-espinacas",
     imagen: "img/recetas/garbanzos-con-espinacas.webp",
@@ -43,6 +45,7 @@ const recetas = [
     tiempo: "30 min"
   },
   {
+  orden: 3,
   titulo: "Salmorejo ligero con huevo duro",
   slug: "salmorejo-ligero-con-huevo-duro",
   imagen: "img/recetas/salmorejo-ligero-con-huevo-duro.webp",
@@ -61,6 +64,7 @@ const recetas = [
   tiempo: "15 min"
   },
   {
+  orden: 4,
   titulo: "Garbanzos al pesto con pollo y feta",
   slug: "garbanzos-al-pesto-con-pollo-y-feta",
   imagen: "img/recetas/garbanzos-al-pesto-con-pollo-y-feta.webp",
@@ -83,6 +87,7 @@ const recetas = [
   tiempo: "20 min"
   },
   {
+  orden: 5,
   titulo: "Pollo al curry cremoso en 10 minutos",
   slug: "pollo-al-curry-cremoso-en-10-minutos",
   imagen: "img/recetas/pollo-al-curry-cremoso-en-10-minutos.webp",
@@ -102,6 +107,7 @@ const recetas = [
   tiempo: "10 min"
 },
   {
+  orden: 6,
   titulo: "Ensalada cremosa de pollo y yogur",
   slug: "ensalada-cremosa-de-pollo-y-yogur",
   imagen: "img/recetas/ensalada-cremosa-de-pollo-y-yogur.webp",
@@ -124,6 +130,7 @@ const recetas = [
   tiempo: "15 min"
   },
   {
+  orden: 7,
   titulo: "Ensalada de sandía, uvas y feta",
   slug: "ensalada-de-sandia-uvas-y-feta",
   imagen: "img/recetas/ensalada-de-sandia-uvas-y-feta.webp",
@@ -148,6 +155,7 @@ const recetas = [
   tiempo: "15 min"
   },
   {
+  orden: 8,
   titulo: "Ensalada malagueña",
   slug: "ensalada-malaguena",
   imagen: "img/recetas/ensalada-malaguena.webp",
@@ -171,6 +179,7 @@ const recetas = [
   tiempo: "20 min"
   },
   {
+  orden: 9,
   titulo: "Ajoblanco cremoso sin pan",
   slug: "ajoblanco-cremoso-sin-pan",
   imagen: "img/recetas/ajoblanco-cremoso-sin-pan.webp",
@@ -195,6 +204,7 @@ const recetas = [
   tiempo: "15 min"
   },
   {
+  orden: 10,
   titulo: "Crema fría de espárragos y aguacate",
   slug: "crema-fria-de-esparragos-y-aguacate",
   imagen: "img/recetas/crema-fria-de-esparragos-y-aguacate.webp",
@@ -214,6 +224,7 @@ const recetas = [
   tiempo: "10 min"
   },
   {
+  orden: 11,
   titulo: "Barquitos de berenjena al tomate",
   slug: "barquitos-de-berenjena-al-tomate",
   imagen: "img/recetas/barquitos-de-berenjena-al-tomate.webp",
@@ -232,6 +243,7 @@ const recetas = [
   tiempo: "30 min"
   },
   {
+  orden: 12,
   titulo: "Alcachofas con gambas",
   slug: "alcachofas-con-gambas",
   imagen: "img/recetas/alcachofas-con-gambas.webp",
@@ -252,6 +264,7 @@ const recetas = [
   tiempo: "25 min"
   },
 {
+  orden: 13,
   titulo: "Mejillones a la francesa",
   slug: "mejillones-a-la-francesa",
   imagen: "img/recetas/mejillones-a-la-francesa.webp",
@@ -267,6 +280,7 @@ const recetas = [
   tiempo: "15 min"
   },
  {
+  orden: 14,
   titulo: "Patata asada rellena de atún",
   slug: "patata-asada-rellena-de-atun",
   imagen: "img/recetas/patata-asada-rellena-de-atun.webp",
@@ -288,6 +302,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 15,
   titulo: "Tortilla de espinacas y queso cottage",
   slug: "tortilla-de-espinacas-y-queso-cottage",
   imagen: "img/recetas/tortilla-de-espinacas-y-queso-cottage.webp",
@@ -309,6 +324,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 16,
   titulo: "Calabacín relleno de pollo",
   slug: "calabacin-relleno-de-pollo",
   imagen: "img/recetas/calabacin-relleno-de-pollo.webp",
@@ -335,6 +351,7 @@ const recetas = [
   tiempo: "35 min"
 },
 {
+  orden: 17,
   titulo: "Pollo al limón con verduras",
   slug: "pollo-al-limon-con-verduras",
   imagen: "img/recetas/pollo-al-limon-con-verduras.webp",
@@ -359,6 +376,7 @@ const recetas = [
   tiempo: "25 min"
 },
 {
+  orden: 18,
   titulo: "Pollo con arroz y verduras salteadas",
   slug: "pollo-con-arroz-y-verduras-salteadas",
   imagen: "img/recetas/pollo-con-arroz-y-verduras-salteadas.webp",
@@ -382,6 +400,7 @@ const recetas = [
   tiempo: "30 min"
 },
 {
+  orden: 19,
   titulo: "Tostadas con aguacate, tomate y huevo",
   slug: "tostadas-con-aguacate-tomate-y-huevo",
   imagen: "img/recetas/tostadas-con-aguacate-tomate-y-huevo.webp",
@@ -403,6 +422,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 20,
   titulo: "Tortilla francesa con tomate",
   slug: "tortilla-francesa-con-tomate",
   imagen: "img/recetas/tortilla-francesa-con-tomate.webp",
@@ -424,6 +444,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 21,
   titulo: "Yogur griego con avena y frutos rojos",
   slug: "yogur-griego-con-avena-y-frutos-rojos",
   imagen: "img/recetas/yogur-griego-con-avena-y-frutos-rojos.webp",
@@ -445,6 +466,7 @@ const recetas = [
   tiempo: "5 min"
 },
 {
+  orden: 22,
   titulo: "Revuelto de champiñones y espinacas",
   slug: "revuelto-de-champinones-y-espinacas",
   imagen: "img/recetas/revuelto-de-champinones-y-espinacas.webp",
@@ -467,6 +489,7 @@ const recetas = [
   tiempo: "15 min"
 },
 {
+  orden: 23,
   titulo: "Ensalada de pollo y manzana",
   slug: "ensalada-de-pollo-y-manzana",
   imagen: "img/recetas/ensalada-de-pollo-y-manzana.webp",
@@ -490,6 +513,7 @@ const recetas = [
   tiempo: "15 min"
 },
 {
+  orden: 24,
   titulo: "Palitos de zanahoria y pepino con hummus",
   slug: "palitos-de-zanahoria-y-pepino-con-hummus",
   imagen: "img/recetas/palitos-de-zanahoria-y-pepino-con-hummus.webp",
@@ -511,6 +535,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 25,
   titulo: "Manzana con queso fresco batido",
   slug: "manzana-con-queso-fresco-batido",
   imagen: "img/recetas/manzana-con-queso-fresco-batido.webp",
@@ -531,6 +556,7 @@ const recetas = [
   tiempo: "5 min"
 },
 {
+  orden: 26,
   titulo: "Hummus casero",
   slug: "hummus-casero",
   imagen: "img/recetas/hummus-casero.webp",
@@ -554,6 +580,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 27,
   titulo: "Tarta de yogur griego y arándanos",
   slug: "tarta-de-yogur-griego-y-arandanos",
   imagen: "img/recetas/tarta-de-yogur-griego-y-arandanos.webp",
@@ -575,6 +602,7 @@ const recetas = [
   tiempo: "50 min"
 },
 {
+  orden: 28,
   titulo: "Pastel de coco y yogur griego",
   slug: "pastel-de-coco-y-yogur-griego",
   imagen: "img/recetas/pastel-de-coco-y-yogur-griego.webp",
@@ -595,6 +623,7 @@ const recetas = [
   tiempo: "35 min"
 },
 {
+  orden: 29,
   titulo: "Ensalada de lentejas con atún y piparras",
   slug: "ensalada-de-lentejas-con-atun-y-piparras",
   imagen: "img/recetas/ensalada-de-lentejas-con-atun-y-piparras.webp",
@@ -616,6 +645,7 @@ const recetas = [
   tiempo: "10 min"
 },
 {
+  orden: 30,
   titulo: "Pudin cremoso de café",
   slug: "pudin-cremoso-de-cafe",
   imagen: "img/recetas/pudin-cremoso-de-cafe.webp",
@@ -634,5 +664,80 @@ const recetas = [
   categoria: "Postres",
   tipo: "Desayuno",
   tiempo: "20 minutos + 6 h de refrigeración"
+},
+{
+  orden: 31,
+  titulo: "Pimientos rellenos de carne y arroz",
+  slug: "pimientos-rellenos-de-carne-y-arroz",
+  imagen: "img/recetas/pimientos-rellenos-de-carne-y-arroz.webp",
+  descripcion: "Pimientos rellenos de carne magra, arroz y verduras, un plato completo, equilibrado y muy fácil de preparar.",
+  keywords: [
+    "pimientos rellenos",
+    "carne picada",
+    "pollo picado",
+    "pavo picado",
+    "arroz",
+    "pimiento rojo",
+    "cebolla",
+    "zanahoria",
+    "tomate triturado",
+    "ajo",
+    "aceite de oliva",
+    "queso rallado ligero",
+    "receta saludable",
+    "plato equilibrado"
+  ],
+  categoria: "Platos principales",
+  tipo: "Almuerzo",
+  tiempo: "50 min"
+},
+{
+  orden: 32,
+  titulo: "Wrap integral de pollo y verduras",
+  slug: "wrap-integral-de-pollo-y-verduras",
+  imagen: "img/recetas/wrap-integral-de-pollo-y-verduras.webp",
+  descripcion: "Wrap integral de pollo y verduras, una comida completa, ligera y perfecta para preparar en pocos minutos.",
+  keywords: [
+    "wrap integral",
+    "tortilla integral",
+    "pollo",
+    "pechuga de pollo",
+    "lechuga",
+    "tomate",
+    "zanahoria",
+    "queso crema ligero",
+    "yogur griego",
+    "cebolla morada",
+    "aguacate",
+    "receta saludable",
+    "comida para llevar"
+  ],
+  categoria: "Platos principales",
+  tipo: "Almuerzo",
+  tiempo: "20 min"
+},
+{
+  orden: 33,
+  titulo: "Ensalada de atún, garbanzos y tomate",
+  slug: "ensalada-de-atun-garbanzos-y-tomate",
+  imagen: "img/recetas/ensalada-de-atun-garbanzos-y-tomate.webp",
+  descripcion: "Ensalada de atún, garbanzos y tomate, una receta fresca, completa y muy fácil de preparar para cualquier época del año.",
+  keywords: [
+    "ensalada de atún",
+    "ensalada de garbanzos",
+    "garbanzos cocidos",
+    "atún al natural",
+    "tomate",
+    "cebolla morada",
+    "pepino",
+    "perejil",
+    "aceite de oliva virgen extra",
+    "limón",
+    "receta saludable",
+    "ensalada mediterránea"
+  ],
+  categoria: "Ensaladas",
+  tipo: "Almuerzo",
+  tiempo: "10 min"
 },
 ];

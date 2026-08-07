@@ -36,20 +36,26 @@ if(textoHabito){
   let textoBusqueda = "";
   let paginaActual = 1;
 
+  function normalizarTexto(texto) {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
   function filtrarRecetas() {
     return recetas.filter(receta => {
       const coincideTipo =
         filtroActivo === "Todas" || receta.tipo === filtroActivo;
 
-     const texto = [
+    const texto = normalizarTexto([
     receta.titulo,
     receta.descripcion,
     receta.categoria,
     receta.tipo,
     ...(receta.keywords || [])
-].join(" ").toLowerCase();
-      const palabras = textoBusqueda
-  .toLowerCase()
+].join(" "));
+   const palabras = normalizarTexto(textoBusqueda)
   .split(/[,\s]+/)
   .filter(Boolean);
 
