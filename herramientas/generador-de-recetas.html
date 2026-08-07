@@ -384,6 +384,7 @@
         <div class="acciones">
           <button class="btn-principal" id="btnGenerar" type="button">Generar receta</button>
           <button class="btn-secundario" id="btnAutoslug" type="button">Generar slug</button>
+          <button class="btn-secundario" id="btnLimpiar" type="button">Limpiar formulario</button>
           
         </div>
       </section>
@@ -507,6 +508,30 @@
         .replace(/ñ/g, "n")
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
+    }
+
+    function actualizarRutaImagen() {
+      campos.imagen.value = `img/recetas/${campos.slug.value.trim()}.webp`;
+    }
+
+    function actualizarRutaImagen() {
+  campos.imagen.value = `img/recetas/${campos.slug.value.trim()}.webp`;
+    }
+
+    function limpiarFormulario() {
+
+      Object.values(campos).forEach(campo => {
+        campo.value = "";
+      });
+
+      salidaHtml.value = "";
+      salidaJs.value = "";
+
+      slugEditadoManualmente = false;
+
+      campos.tipo.value = "Desayuno";
+
+      campos.titulo.focus();
     }
 
    function completarDesdeRecetas(slug) {
@@ -843,17 +868,27 @@ ${keywords}
       }
     });
 
-    campos.slug.addEventListener("input", () => {
+   campos.slug.addEventListener("input", () => {
       slugEditadoManualmente = true;
+      actualizarRutaImagen();
     });
 
-    $("btnAutoslug").addEventListener("click", () => {
+   $("btnAutoslug").addEventListener("click", () => {
       campos.slug.value = slugify(campos.titulo.value);
       slugEditadoManualmente = false;
+      actualizarRutaImagen();
     });
 
     $("btnGenerar").addEventListener("click", () => {
       generarTodo();
+    });
+
+    $("btnLimpiar").addEventListener("click", () => {
+
+      if (confirm("¿Limpiar todos los campos?")) {
+        limpiarFormulario();
+      }
+
     });
 
     $("copiarHtml").addEventListener("click", async () => {
